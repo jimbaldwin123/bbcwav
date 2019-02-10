@@ -25,4 +25,9 @@ class Wav extends Model
             fclose($newf);
         }
     }
+
+    public static function testWavExtract()
+    {
+        dd('here');
+    }
 }
