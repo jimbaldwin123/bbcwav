@@ -79,6 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
+                    <a href="/wavconcat">Wav Concat</a><br>
                     <a href="/wavsec">WavSec</a>
                 </div>
 
