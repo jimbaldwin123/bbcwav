@@ -29,6 +29,6 @@ class SourceController extends Controller
     }
     public function getWavSec()
     {
-        WavModel::testWavExtract();
+        WavModel::testWavExtract('07075024.wav');
     }
 }

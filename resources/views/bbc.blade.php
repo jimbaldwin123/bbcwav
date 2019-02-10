@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel bbc
+                    <a href="/wavsec">WavSec</a>
                 </div>
 
                 <div class="links">
