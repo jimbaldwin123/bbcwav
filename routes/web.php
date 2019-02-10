@@ -13,6 +13,9 @@
 
 Route::get('/', function () {
 //    return view('welcome');
+
     return view('bbc');
 });
 
+Route::get('/wav', 'SourceController@getWavs');
+Route::get('/wavsec', 'SourceController@getWavSec');
