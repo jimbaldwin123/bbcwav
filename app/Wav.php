@@ -47,4 +47,23 @@ class Wav extends Model
             echo 'An error has occurred: ' . $ex->getMessage();
         }
     }
+
+    public static function testWavSave($filename)
+    {
+        $download_folder = "/home/ninge/Downloads/bbc/";
+        $inputFile = $download_folder . $filename;
+        $outputFile = $download_folder . 'chunk.wav';
+        $start = 0 * 1000; // From 0 seconds
+        $end = 2 * 1000; // To 2 seconds
+
+        //dd($outputFile);
+        // Extract the chunk and save it on the hard disk
+        try {
+            $extractor = new \Audero\WavExtractor\AuderoWavExtractor($inputFile);
+            $extractor->saveChunk($start, $end, $outputFile);
+            echo 'Chunk extraction completed.';
+        } catch (\Exception $ex) {
+            echo 'An error has occurred: ' . $ex->getMessage();
+        }
+    }
 }

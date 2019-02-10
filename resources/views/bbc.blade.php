@@ -79,8 +79,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <a href="/wavconcat">Wav Concat</a><br>
-                    <a href="/wavsec">WavSec</a>
+                    <a href="/wavconcat">Concat Wav</a><br>
+                    <a href="/wavsec">Download Wav</a><br>
+                    <a href="/wavsave">Save Wav</a><br>
                 </div>
 
                 <div class="links">

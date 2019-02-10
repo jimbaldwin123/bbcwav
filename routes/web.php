@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::get('/wav', 'SourceController@getWavs');
 Route::get('/wavconcat', 'SourceController@wavConcatWrap');
 Route::get('/wavsec', 'SourceController@getWavSec');
+Route::get('/wavsave', 'SourceController@getWavSave');

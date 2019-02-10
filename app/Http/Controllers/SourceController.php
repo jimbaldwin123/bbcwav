@@ -32,9 +32,13 @@ class SourceController extends Controller
         WavModel::testWavExtract('07075024.wav');
     }
 
+    public function getWavSave()
+    {
+        WavModel::testWavSave('07075024.wav');
+    }
     public function wavConcatWrap()
     {
-        $data = ['duration'=>1,'files'=>['07075053.wav','07075040.wav']];
+        $data = ['duration'=>5000,'files'=>['07075053.wav','07075040.wav']];
         $this->wavConcat($data);
     }
     public function wavConcat($data)
@@ -49,9 +53,9 @@ class SourceController extends Controller
         foreach($files as $file){
             $i++;
             $f = $this->download_folder .'outfile'.$i.'.wav';
-            // print $file . ' ' . $f . '<br>';
+            print $file . ' ' . $f . '<br>';
             $extractor = new Extractor($this->download_folder.$file);
-            //$extractor->getChunk($start,$end);
+            // $extractor->getChunk($start,$end);
             $extractor->saveChunk($start,$end,$f);
         }
 return;
