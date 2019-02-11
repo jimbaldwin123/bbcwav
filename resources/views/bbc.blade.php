@@ -79,6 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
+                    <a href="/wav">Download Wavs</a><br>
                     <a href="/wavconcat">Concat Wav</a><br>
                     <a href="/wavsec">Download Wav</a><br>
                     <a href="/wavsave">Save Wav</a><br>
