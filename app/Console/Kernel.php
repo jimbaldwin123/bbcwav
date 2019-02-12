@@ -42,6 +42,11 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
+
+//        $schedule->call(function () {
+//            $controller = new SourceController();
+//            $controller->getWavs();
+//        })->daily()->at('05:42');
     }
 
 }

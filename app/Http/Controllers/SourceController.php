@@ -12,8 +12,8 @@ class SourceController extends Controller
     public function getWavs($data = null)
     {
         $this->url = "http://bbcsfx.acropolis.org.uk/assets/";
-        $this->download_folder = "/home/ninge/plex/bbc/";
-        $limit = $data['limit'] ?? 10000;
+        $this->download_folder = "/media/ninge/1TB/bbc/";
+        $limit = $data['limit'];
         if($limit){
             $wavs = WavModel::take($limit)->get();
         } else {
@@ -45,6 +45,7 @@ class SourceController extends Controller
      * TODO clean up data table
      * make variable random duration
      * make variable random selection of wav files
+     * use .env for folder settings etc.
      * @throws \Exception
      *
      */
