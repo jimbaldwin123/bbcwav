@@ -9,10 +9,16 @@ class SourceController extends Controller
 {
     private $url;
     private $download_folder;
+
+    public function __construct()
+    {
+        //parent::__construct();
+        $this->download_folder = "/media/ninge/1TB/bbc/";
+    }
+
     public function getWavs($data = null)
     {
         $this->url = "http://bbcsfx.acropolis.org.uk/assets/";
-        $this->download_folder = "/media/ninge/1TB/bbc/";
         $limit = $data['limit'];
         if($limit){
             $wavs = WavModel::take($limit)->get();
@@ -51,43 +57,43 @@ class SourceController extends Controller
      */
     public function wavConcatWrap()
     {
-        $filenames = glob('/home/ninge/Downloads/bbc/*.wav');
-        $data = ['duration'=>300,'files'=>array_slice($filenames, 0, 100)];
+        $filenames = array_map('basename',glob($this->download_folder. "0*.wav"));
+        $data = ['duration'=>100,'files'=>$filenames, 'length'=>100];
         $this->wavConcat($data);
     }
     public function wavConcat($data)
     {
-        $this->download_folder = "/home/ninge/Downloads/bbc/";
         $duration = $data['duration'];
+
         $files = $data['files'];
-        $start = 500;
-        $end = $start + $duration;
+        $length = $data['length'];
+
         $stream = [];
         $i=0;
         $chunk = '';
-        foreach($files as $longfile){
-            $file = basename($longfile);
-            $i++;
-            $f = $this->download_folder .'outfile'.$i.'.wav';
-            print $file . ' ' . $f . '<br>';
+        $total_size = 0;
+        for($i=0;$i<$length;$i++){
+            $file = $files[rand(0,count($files))];
             $extractor = new Extractor($this->download_folder.$file);
-            // $extractor->getChunk($start,$end);
-            // $extractor->saveChunk($start,$end,$f);
+
+            $duration = rand(100,5000);
+            $start = 500;
+            $end = $start + $duration;
+            print $duration . "\t" . $file . '<br>';
 
             $size = ($end - $start) * $extractor->wav->getDataRate() / 1000;
             $difference = $size % $extractor->wav->getChannelsNumber();
             if ($difference != 0) {
                 $size += $difference;
             }
-            $size = (int)$size;
+            $total_size += (int)$size;
 
             //$extractor->wav->setDataChunkSize($size);
             //$chunk = $this->wav->headersToString();
             $chunk .= $extractor->wav->getWavChunk($start, $end);
         }
 
-            $size *= $i;
-            $extractor->wav->setDataChunkSize($size);
+            $extractor->wav->setDataChunkSize($total_size);
             $header = $extractor->wav->headersToString();
             $hunk = $header . $chunk;
 
