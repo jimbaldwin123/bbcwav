@@ -58,7 +58,7 @@ class SourceController extends Controller
     public function wavConcatWrap()
     {
         $filenames = array_map('basename',glob($this->download_folder. "0*.wav"));
-        $data = ['duration'=>100,'files'=>$filenames, 'length'=>100];
+        $data = ['duration'=>100,'files'=>$filenames, 'length'=>1000];
         $this->wavConcat($data);
     }
     public function wavConcat($data)
@@ -76,7 +76,7 @@ class SourceController extends Controller
             $file = $files[rand(0,count($files))];
             $extractor = new Extractor($this->download_folder.$file);
 
-            $duration = rand(100,5000);
+            $duration = rand(50,500);
             $start = 500;
             $end = $start + $duration;
             print $duration . "\t" . $file . '<br>';
@@ -103,8 +103,5 @@ class SourceController extends Controller
             }
             fwrite($file, $hunk);
             fclose($file);
-
-return;
-
     }
 }
